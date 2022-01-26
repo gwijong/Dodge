@@ -12,13 +12,13 @@ public class PlayerController : MonoBehaviour
     {
         //게임 오브젝트에서 Rigidbody 컴포넌트를 찾아 playerRigidbody에 할당
         playerRigidbody = GetComponent<Rigidbody>();
-        
     }
 
    
  
     void Update()    //감지하지 못할 정도의 속도로 갱신됨
     {
+        
         //수평축과 수직축의 입력값을 감지하여 저장
         float xInput = Input.GetAxis("Horizontal");
         float zInput = Input.GetAxis("Vertical");
@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
         Vector3 newVelocy = new Vector3(xSpeed, 0f, zSpeed);
         //리지드바디의 속도에 newVelocity 할당
         playerRigidbody.velocity = newVelocy;
+        //playerRigidbody.velocity = new Vector3(xInput, 0.0f, zInput) * speed;
     }
 
     public void Die()
