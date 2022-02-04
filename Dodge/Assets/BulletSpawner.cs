@@ -16,15 +16,23 @@ public class BulletSpawner : MonoBehaviour
     void Start()
     {
         timeAfterSpawn = 0f;
-
         spawnRate = Random.Range(spawnRateMin, spawnRateMax);
-
         target = FindObjectOfType<PlayerController>().transform;
     }
 
     
     void Update()
     {
-        
+        timeAfterSpawn += Time.deltaTime;
+
+        if(timeAfterSpawn >= spawnRate)
+        {
+            timeAfterSpawn = 0f;
+
+            GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation); //총알 복제본을 총알생성기 포지션, 로테이션 위치에 생성
+            bullet.transform.LookAt(target); //총알 정면 방향이 타겟을 향하도록 회전
+
+            spawnRate = Random.Range(spawnRateMin, spawnRateMax); //다음번 생성 주기 랜덤 결정
+        }
     }
 }
