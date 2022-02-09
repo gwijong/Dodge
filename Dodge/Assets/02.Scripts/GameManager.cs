@@ -22,6 +22,23 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
+        if (!isGameover)
+        {
+            surviveTime += Time.deltaTime;
+            timeText.text = "time" + (int)surviveTime;
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene("SampleScene");
+            }
+        }
+    }
+
+    public void EneGame()
+    {
+        isGameover = true;
+        gameoverText.SetActive(true);
     }
 }
